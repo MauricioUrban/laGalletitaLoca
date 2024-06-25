@@ -1,0 +1,44 @@
+
+<h1>Listado de Productos</h1>
+
+<table class = "table text-center">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Descipción</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Cant</th>
+            <th>Compra</th>
+        </tr>
+    </thead>
+        <tbody>
+        @for (product of products; track product.description) {            
+            <tr [ngClass]="{'clearence':product.clearance}">
+              <td><img width="60" class="img-thumbnail" [src]="product.image" [alt]="product.description"></td>
+              <td>{{product.description | uppercase}}</td>
+              <td>{{product.mark}}</td>
+              <td>{{product.price | currency}}</td>
+              @if (product.stock > 0) {
+                <td>{{product.stock}}</td>
+              }@else {
+                <td class="badge bg-warning">SIN STOCK</td>
+              }
+              <td>
+                <!--<app-input-integer [(quantity)]="beer.quantity" [max]="beer.stock" (maxReached)="maxReached($event)"></app-input-integer> -->  
+                
+                  <!--cant: {{beer.quantity}} -->
+              </td>
+              <td>
+        <!--        <button class="btn btn-primary" (click)="addToCart(product)">Comprar</button> -->
+              </td>
+            </tr>
+          }
+          @empty {
+            <tr>
+              <td colspan="4">No Hay Productos para mostrar</td>
+            </tr>
+          }
+        </tbody>
+</table>

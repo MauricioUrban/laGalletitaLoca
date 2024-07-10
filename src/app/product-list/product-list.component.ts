@@ -1,6 +1,7 @@
 import { Component, OnInit, numberAttribute } from '@angular/core';
 import { Product } from '../Product';
 import { ProductCartService } from '../product-cart.service';
+import { ProductDataService } from '../product-data.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { ProductCartService } from '../product-cart.service';
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit{
-
+  products: Product[] = [];
+  /*
   products: Product[] = [
       {
       cod:1000,
@@ -81,15 +83,40 @@ export class ProductListComponent implements OnInit{
                   clearance: false,
                   quantity: 0,
                   },
+                  {
+                    cod: 1100,
+                    description: "Galleta de Chocolate x 150gr",
+                    mark: "Chocolinas",
+                    price: 350,
+                    stock: 15,
+                    image: "assets/img/salado.jpeg",
+                    clearance: false,
+                    quantity: 0,
+                  },
+                  {
+                    cod: 1101,
+                    description: "Alfajor de Maicena x 50gr",
+                    mark: "Guaymallén",
+                    price: 120,
+                    stock: 20,
+                    image: "assets/img/salado.jpeg",
+                    clearance: false,
+                    quantity: 0,
+                  },
     ];
-    
+    */
     //comparten la misma instancia de cart cart.componet y product-list.component 
-    constructor(private cart: ProductCartService){
+    constructor(private cart: ProductCartService,
+                private productsDataService: ProductDataService
+    ){
 
     }
-
+    //ciclo de vida del componente
+    //se dispara cuando el componente aparece en pantalla
     ngOnInit(): void{
-
+      //mi arreglo de productos se convierte en el que viene de mi observable
+      this.productsDataService.getAll()
+      .subscribe(products => this.products = products);
     }
 
     addToCart(product: Product) : void{

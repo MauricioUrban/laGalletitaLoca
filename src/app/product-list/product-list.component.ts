@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, numberAttribute } from '@angular/core';
 import { Product } from '../Product';
+import { ProductCartService } from '../product-cart.service';
 
 
 @Component({
@@ -7,9 +8,9 @@ import { Product } from '../Product';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit{
 
-    products: Product[] = [
+  products: Product[] = [
       {
       cod:1000,
       description:"Bizcocho Salado x 200gr",
@@ -82,5 +83,24 @@ export class ProductListComponent {
                   },
     ];
     
+    //comparten la misma instancia de cart cart.componet y product-list.component 
+    constructor(private cart: ProductCartService){
+
+    }
+
+    ngOnInit(): void{
+
+    }
+
+    addToCart(product: Product) : void{
+      this.cart.addToCart(product);
+      product.stock -= product.quantity;
+      product.quantity = 0;
+
+    }
+
+    maxReached($event: number) {
+      alert("No se puede comprar más de: " + $event);
+      }
 
 }

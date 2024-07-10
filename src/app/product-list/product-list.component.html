@@ -9,8 +9,9 @@
             <th>Marca</th>
             <th>Precio</th>
             <th>Stock</th>
-            <th>Cant</th>
-            <th>Compra</th>
+            <th class="cant">Cant</th>
+
+            <th></th>
         </tr>
     </thead>
         <tbody>
@@ -23,16 +24,21 @@
               @if (product.stock > 0) {
                 <td>{{product.stock}}</td>
               }@else {
-                <td class="badge bg-warning">SIN STOCK</td>
+                <td>0</td>
               }
-              <td>
-                <!--<app-input-integer [(quantity)]="beer.quantity" [max]="beer.stock" (maxReached)="maxReached($event)"></app-input-integer> -->  
-                
-                  <!--cant: {{beer.quantity}} -->
-              </td>
-              <td>
-        <!--        <button class="btn btn-primary" (click)="addToCart(product)">Comprar</button> -->
-              </td>
+              @if (product.stock > 0) {
+                <td>
+                  <app-input-integer [(quantity)]="product.quantity" [max]="product.stock" (maxReached)="maxReached($event)"></app-input-integer>
+                    --cant: {{product.quantity}}
+                </td>
+                <td>
+                  <button class="btn btn-primary" (click)="addToCart(product)">Comprar</button>
+                </td>
+              }@else {
+                <td class="badge bg-warning">SIN STOCK</td>
+                <td></td>
+              }
+              
             </tr>
           }
           @empty {

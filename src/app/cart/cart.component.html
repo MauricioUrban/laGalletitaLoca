@@ -1,1 +1,9 @@
 <h3>Carrrrito de compras</h3>
+
+<ul>
+    @for (product of cartList; track product.description){
+        <li>
+            {{product.description}} : {{product.quantity}}
+         </li>
+    }    
+</ul>

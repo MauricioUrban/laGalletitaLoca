@@ -7,16 +7,28 @@ import { Product } from '../Product';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
+
+
   cartList: Product[] = [];
+  total: number = 0;
+
   //comparten la misma instancia de cart cart.componet y product-list.component 
-  constructor(private cart: ProductCartService){
-    cart.cartList.subscribe((observableC)=> this.cartList = observableC)
+  constructor(private cart: ProductCartService) {
+    cart.cartList.subscribe((observableC) => this.cartList = observableC)
+    cart.total.subscribe((t) => this.total = t)
 
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
 
+  }
+
+
+  removeToCart() {
+    this.cart.removeToCart();
+    this.total = 0;
+    alert("Realizo su compra con EXITO");
   }
 
 }

@@ -1,9 +1,17 @@
-<h3>Carrrrito de compras</h3>
+<div class="container-carrito">
+    <h3>Carrito de compras</h3>
 
-<ul>
-    @for (product of cartList; track product.description){
-        <li>
-            {{product.description}} : {{product.quantity}}
-         </li>
-    }    
-</ul>
+    <div class="cart">
+        @for (product of cartList; track product.description){
+        <div class="product">
+            <span>{{product.description}}</span> : <span>{{product.quantity}}</span>
+        </div>
+        }
+    </div>
+
+
+    <div class="total-label">Total</div>
+    <div>{{ total }}</div>
+
+    <button type="button" class="btn btn-primary" (click)="removeToCart()" >Confirmar Compra</button>
+</div>

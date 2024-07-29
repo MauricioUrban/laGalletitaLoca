@@ -1,7 +1,11 @@
 # LaGalletitaLoca - Carrito de Compras
 
    ### El proyecto se encuentra en la rama MASTER
-
+ 
+## Urban, Mauricio Ariel;
+## DNI: 25.825.482; 
+## Email: mauricio.urban@hotmail.com.ar;
+## Sede: Olavarría.
 
 ## Descripción
 La Galletita Loca es una aplicación web de carrito de compras para un proveedor de galletitas. Permite a los usuarios seleccionar y comprar sus galletitas requeridas.
